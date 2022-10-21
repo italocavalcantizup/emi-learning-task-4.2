@@ -24,7 +24,7 @@ class AutorFormViewController: UIViewController {
         
         switch formularioValido() {
         case (false, let mensagemValidacao):
-            exibeMensagemErro(para: mensagemValidacao)
+            exibeAlerta(titulo: "Erro", mensagem: mensagemValidacao)
         default:
             cadastrarAutor()
         }
@@ -49,16 +49,12 @@ class AutorFormViewController: UIViewController {
         return (true, nil)
     }
     
-    func exibeMensagemErro(para mensagemValidacao: MensagemValidacao?) {
-        let mensagem = mensagemValidacao ?? "Verifique os dados e tente novamente."
-        
-        let alerta = UIAlertController(title: "Erro", message: mensagem, preferredStyle: .alert)
-        alerta.addAction(UIAlertAction(title: "Ok", style: .cancel))
-        self.present(alerta, animated: true)
+    func cadastrarAutor() {
+        exibeAlerta(titulo: "Feito", mensagem: "Autor cadastrado com sucesso.")
     }
     
-    func cadastrarAutor() {
-        let alerta = UIAlertController(title: "Feito", message: "Autor cadastrado com sucesso", preferredStyle: .alert)
+    func exibeAlerta(titulo: String?, mensagem: String?) {
+        let alerta = UIAlertController(title: titulo, message: mensagem, preferredStyle: .alert)
         alerta.addAction(UIAlertAction(title: "Ok", style: .cancel))
         self.present(alerta, animated: true)
     }
